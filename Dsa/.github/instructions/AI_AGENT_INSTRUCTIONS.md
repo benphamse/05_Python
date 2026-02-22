@@ -10,15 +10,15 @@ Dsa/
 │   ├── sliding_window/
 │   ├── stack/
 │   ├── binary_search/
-│   ├── linked_list/
-│   ├── trees/
-│   ├── heap_priority_queue/
 │   ├── backtracking/
+│   ├── heap_priority_queue/
 │   ├── graphs/
 │   ├── dynamic_programming/
-│   └── greedy/
+│   ├── greedy/
+│   └── tree/
 └── data_structures/        # Organize by data structure type
     ├── array/
+    ├── arrays_and_hashing/
     ├── linked_list/
     ├── stack/
     ├── queue/
@@ -29,6 +29,11 @@ Dsa/
     ├── string/
     └── matrix/
 ```
+
+**Note**: You can organize solutions in EITHER folder based on preference:
+
+- `algorithm_patterns/` - Focus on the solving technique/pattern
+- `data_structures/` - Focus on the primary data structure used
 
 ## Naming Conventions
 
@@ -89,10 +94,36 @@ Every solution file MUST include:
 
 ### Python Style
 
-- Follow PEP 8 for code formatting
-- Use type hints for function signatures
-- Write descriptive variable names
-- Add inline comments for complex logic
+- **Python 3.12+ Style**: Use modern Python 3.12+ features and conventions
+- **Type Hints**: Always use type hints for function signatures (from `typing` module)
+- **No Nested Functions**: Define helper methods as class methods instead of nested functions
+- **Variable Naming**: Use camelCase for local variables (e.g., `leftHeight`, `rightHeight`, not `left_height`)
+- **PEP 8**: Follow PEP 8 for code formatting (except variable naming - use camelCase)
+- **Descriptive Names**: Write clear, descriptive variable names
+- **Comments**: Add inline comments for complex logic
+
+### Nested Functions Rule
+
+❌ **DON'T** use nested functions:
+
+```python
+class Solution:
+    def method(self, root):
+        def helper(node):  # Nested function - AVOID
+            pass
+        return helper(root)
+```
+
+✅ **DO** use class methods:
+
+```python
+class Solution:
+    def method(self, root):
+        return self.helper(root)
+
+    def helper(self, node):  # Class method - PREFERRED
+        pass
+```
 
 ### Documentation
 
@@ -108,30 +139,39 @@ Every solution file MUST include:
 
 ## Category Assignment Rules
 
-When creating a new solution file, determine the PRIMARY category:
+You can organize solutions in EITHER `algorithm_patterns/` OR `data_structures/` folder.
 
-### algorithm_patterns/
+### algorithm_patterns/ (Organize by Technique)
 
-- **arrays_and_hashing**: Hash maps, frequency counting, sets
-- **two_pointers**: Left/right pointers, fast/slow pointers
-- **sliding_window**: Fixed/variable window problems
-- **stack**: Stack-based solutions, monotonic stack
-- **binary_search**: Search, bisect, divide and conquer
-- **linked_list**: Linked list manipulation, cycle detection
-- **trees**: Binary trees, BST, tree traversal
-- **heap_priority_queue**: Heap operations, priority queue
-- **backtracking**: DFS with backtracking, permutations
-- **graphs**: Graph traversal, BFS, DFS, shortest path
-- **dynamic_programming**: DP, memoization, tabulation
-- **greedy**: Greedy algorithms, interval problems
+- **arrays_and_hashing/**: Hash maps, frequency counting, sets
+- **two_pointers/**: Left/right pointers, fast/slow pointers
+- **sliding_window/**: Fixed/variable window problems
+- **stack/**: Stack-based solutions, monotonic stack
+- **binary_search/**: Binary search, divide and conquer
+- **backtracking/**: DFS with backtracking, permutations
+- **heap_priority_queue/**: Heap operations, priority queue, top K
+- **graphs/**: Graph traversal, BFS, DFS, shortest path
+- **dynamic_programming/**: DP, memoization, tabulation
+- **greedy/**: Greedy algorithms, interval problems
+- **tree/**: Tree traversal patterns, tree algorithms
 
-### data_structures/
+### data_structures/ (Organize by Data Structure)
 
-Use this for foundational implementations:
+- **arrays_and_hashing/**: Hash maps, frequency counting, sets, array problems
+- **linked_list/**: Linked list manipulation, cycle detection, node operations
+- **stack/**: Stack-based solutions, monotonic stack, LIFO operations
+- **queue/**: Queue operations, FIFO, deque
+- **tree/**: Binary trees, BST, tree traversal, tree operations
+- **heap/**: Heap operations, priority queue, top K problems
+- **graph/**: Graph traversal, BFS, DFS, shortest path
+- **string/**: String manipulation, pattern matching
+- **matrix/**: Matrix operations, 2D array problems
 
-- Data structure implementations (Node, LinkedList, etc.)
-- Core operations and utilities
-- Educational/reference code
+**Rule**: Choose the folder and category based on:
+
+1. User preference (if specified)
+2. PRIMARY technique used (for algorithm_patterns)
+3. PRIMARY data structure used (for data_structures)
 
 ## Workflow for Creating Solution Files
 
@@ -139,11 +179,13 @@ Use this for foundational implementations:
    - LeetCode number
    - Problem name
    - Difficulty
-   - Main technique/pattern
+   - Main technique/pattern OR data structure used
 
 2. **Determine Category**
-   - Primary algorithm pattern
-   - Place in appropriate algorithm_patterns folder
+   - Ask user or determine from context which folder to use
+   - If algorithm_patterns: choose by primary solving technique
+   - If data_structures: choose by primary data structure
+   - Place in appropriate folder
 
 3. **Create File**
    - Use naming format: `LC###_ProblemName.py`
@@ -151,27 +193,42 @@ Use this for foundational implementations:
 
 4. **Write Solution**
    - Add header documentation
-   - Implement solution with comments
+   - Implement solution with Python 3.12+ style
+   - Use class methods instead of nested functions
+   - Include type hints
+   - Add comments for clarity
    - Include test cases
 
 5. **Verify**
+   - No nested functions used
+   - All type hints present
    - Run test cases
    - Check output matches expected results
    - Ensure code follows style guidelines
 
 ## Example Categories for Common Problems
 
+### algorithm_patterns/ examples:
+
 - Two Sum (1) → `arrays_and_hashing/`
-- Add Two Numbers (2) → `linked_list/`
+- Valid Palindrome (125) → `two_pointers/`
 - Longest Substring (3) → `sliding_window/`
-- Container With Most Water (11) → `two_pointers/`
 - Valid Parentheses (20) → `stack/`
-- Merge K Sorted Lists (23) → `heap_priority_queue/`
 - Binary Search (704) → `binary_search/`
 - Permutations (46) → `backtracking/`
-- Climbing Stairs (70) → `dynamic_programming/`
 - Number of Islands (200) → `graphs/`
-- Find Duplicate (287) → `arrays_and_hashing/` (uses cycle detection but classified as array)
+- Climbing Stairs (70) → `dynamic_programming/`
+
+### data_structures/ examples:
+
+- Two Sum (1) → `arrays_and_hashing/`
+- Add Two Numbers (2) → `linked_list/`
+- Longest Substring (3) → `string/`
+- Valid Parentheses (20) → `stack/`
+- Merge K Sorted Lists (23) → `heap/`
+- Invert Binary Tree (226) → `tree/`
+- Number of Islands (200) → `graph/`
+- Find Duplicate (287) → `arrays_and_hashing/`
 
 ## Response Format
 
@@ -186,25 +243,13 @@ When user provides a problem/code, respond with:
 
 Before finalizing a file, ensure:
 
-- [ ] Correct naming format
+- [ ] Correct naming format (LC###\_ProblemName.py)
 - [ ] Complete header documentation
-- [ ] Type hints present
+- [ ] Python 3.12+ style with type hints
+- [ ] NO nested functions (use class methods)
+- [ ] camelCase for variable names (leftHeight not left_height)
 - [ ] Code is well-commented
 - [ ] Test cases included
 - [ ] Big O analysis provided
-- [ ] File placed in correct category
-- [ ] Code follows PEP 8 (except camelCase methods for LeetCode compatibility)
-
-## Quality Checklist
-
-Before finalizing a file, ensure:
-
-- [ ] Correct naming format
-- [ ] Complete header documentation
-- [ ] Type hints present
-- [ ] Code is well-commented
-- [ ] Test cases included
-- [ ] Big O analysis provided
-- [ ] File placed in correct category
-- [ ] Code follows PEP 8 (except camelCase methods for LeetCode compatibility)
-- [ ] Code follows PEP 8 (except camelCase methods for LeetCode compatibility)
+- [ ] File placed in correct folder (algorithm_patterns/ OR data_structures/)
+- [ ] Code follows PEP 8 (except camelCase for methods/variables per LeetCode style)

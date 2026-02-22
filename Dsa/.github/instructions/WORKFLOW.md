@@ -14,7 +14,8 @@ INPUT: User provides LeetCode problem (code, number, or description)
 - [ ] Problem title/name
 - [ ] Difficulty level (Easy/Medium/Hard)
 - [ ] Problem description (brief)
-- [ ] Main algorithm/technique used
+- [ ] Main algorithm/technique OR data structure used
+- [ ] Preferred folder: algorithm_patterns/ OR data_structures/
 
 ### Step 3: Determine Category
 
@@ -125,11 +126,12 @@ class Solution:
 
 1. **Extract**: LeetCode #1, "Two Sum", Easy
 2. **Category**: Hash map → `arrays_and_hashing/`
-3. **Filename**: `LC001_TwoSum.py`
-4. **Algorithm**: Hash Map
-5. **Complexity**: O(n) time, O(n) space
-6. **Generate**: Use template
-7. **Save**: `Dsa/algorithm_patterns/arrays_and_hashing/LC001_TwoSum.py`
+3. **Folder**: User prefers `algorithm_patterns/`
+4. **Filename**: `LC001_TwoSum.py`
+5. **Algorithm**: Hash Map
+6. **Complexity**: O(n) time, O(n) space
+7. **Generate**: Use template
+8. **Save**: `Dsa/algorithm_patterns/arrays_and_hashing/LC001_TwoSum.py`
 
 ### Example 2: Find Duplicate Number
 
@@ -152,11 +154,12 @@ class Solution:
 
 1. **Extract**: LeetCode #287, "Find the Duplicate Number", Medium
 2. **Category**: Uses cycle detection but classified as `arrays_and_hashing/`
-3. **Filename**: `LC287_FindDuplicate.py`
-4. **Algorithm**: Floyd's Cycle Detection
-5. **Complexity**: O(n) time, O(1) space
-6. **Generate**: Use template with cycle detection notes
-7. **Save**: `Dsa/algorithm_patterns/arrays_and_hashing/LC287_FindDuplicate.py`
+3. **Folder**: User prefers `data_structures/`
+4. **Filename**: `LC287_FindDuplicate.py`
+5. **Algorithm**: Floyd's Cycle Detection
+6. **Complexity**: O(n) time, O(1) space
+7. **Generate**: Use template with cycle detection notes
+8. **Save**: `Dsa/data_structures/arrays_and_hashing/LC287_FindDuplicate.py`
 
 ---
 
@@ -164,13 +167,15 @@ class Solution:
 
 ### When Problem Fits Multiple Categories
 
-**Rule**: Choose the PRIMARY technique used
+**Rule**: Choose the PRIMARY technique/structure AND ask user for folder preference
 
 Example: "Find Duplicate Number"
 
-- Uses cycle detection (linked_list technique)
-- But operates on array (arrays category)
-- **Decision**: Place in `arrays_and_hashing/` (matches LeetCode categorization)
+- Uses cycle detection (algorithm pattern: linked_list technique)
+- But operates on array (data structure: arrays category)
+- **Decision**:
+  - If `algorithm_patterns/`: Place in appropriate pattern folder
+  - If `data_structures/`: Place in `arrays_and_hashing/`
 - **Note**: Add comment explaining the technique
 
 ### When Problem Number is Missing
@@ -196,12 +201,12 @@ Example: "Find Duplicate Number"
 ### Standard Response
 
 ```
-Created file: LC{number}_{Name}.py in algorithm_patterns/{category}/
+Created file: LC{number}_{Name}.py in {algorithm_patterns|data_structures}/{category}/
 
 File includes:
 ✓ Complete header documentation
-✓ Type hints
-✓ Solution implementation
+✓ Python 3.12+ style with type hints
+✓ Solution implementation (no nested functions)
 ✓ Test cases with expected outputs
 ✓ Time/Space complexity analysis
 ```
